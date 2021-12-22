@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./sass/main.css" />
+    <!-- Link Swiper's CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css"
+    />
+  </head>
+  <body>
+    <%var header%>
+    <%var course%>
+    <%var news%>
+    <%var teacher%>
+    <%var gallery%>
+    <%var comment%>
+    <%var about%>
+    <% var contact_data %>
+    <header id="header" class="header">
+      <div class="header-wrapper">
+        <nav class="navbar">
+          <div class="navbar-wrapper">
+            <a href="#" class="logo">
+              <img class="ansor-logo" src="./img/Logo.svg" alt="Ansor Logo" />
+            </a>
+
+            <button class="navbar__hamburger-icon">
+              <span class="line navbar__hamburger-line"></span>
+              <span class="line navbar__hamburger-line"></span>
+              <span class="line navbar__hamburger-line"></span>
+            </button>
+
+            <div class="navbar__links on">
+              <a href="#news" class="navbar__link">Yangiliklar</a>
+              <a href="#courses" class="navbar__link">Kurslar</a>
+              <a href="#teachers" class="navbar__link">Ustozlar</a>
+              <a href="#comments" class="navbar__link">Izohlar</a>
+              <a href="#gallery" class="navbar__link">Darslardan lavxalar</a>
+              <a href="#contact" class="navbar__link">Aloqa</a>
+            </div>
+          </div>
+        </nav>
+
+        <div class="main">
+          <%if(header[0]){%>
+          <div class="main__content">
+            <div style=" font-family: Product Sans Bold; font-size: 5.8rem; ">
+              <%- header[0].title%></div>
+            <p class="main__description">
+              <%- header[0].description%>
+            </p>
+            <button type="button" class="btn course__buy">
+              Kursga a'zo bo'lish
+            </button>
+          </div>
+          <% }%>
+
+          <div class="hero"></div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="wrapper">
+        <section id="news" class="news">
+          <div class="__header">
+            <h2 class="section-title">Yangiliklar</h2>
+            <button type="button" class="more-btn">Barcha yangiliklar</button>
+          </div>
+
+          <div class="__content news__content">
+            <%if( news) {%>
+              <%for (let i=0; i<news.length; i++) {%>
+                  <%if(i===3){break;}%>
+            <a class="news__card">
+              <figure class="news__card-figure">
+                <img
+                  class="news__card-img"
+                  src="<%= news[i].image%>"
+                  alt="post__image"
+                />
+                <figcaption class="news__card-caption">
+                  <p class="news__card-date">12/06/2021</p>
+                  <h4 class="news__card-title"><%= news[i].name%></h4>
+                </figcaption>
+              </figure>
+
+              <figcaption class="news__card-caption-mobile">
+                <p class="news__card-date"><%= moment(news[i].createdAt).format("DD.MM.YYYY") %>1</p>
+                <h4 class="news__card-title"><%= news[i].name%></h4>
+              </figcaption>
+              <p class="news__card-description">
+                <%= news[i].title%>
+              </p>
+            </a>
+            <% }%>
+            <% }%>
+            <%if( news.length>3) {%>
+              <%for (let i=3; i<news.length; i++) {%>
+                <a class="news__card extra hide">
+                  <figure class="news__card-figure">
+                    <img
+                      class="news__card-img"
+                      src="<%= news[i].image%>"
+                      alt="post__image"
+                    />
+                    <figcaption class="news__card-caption">
+                      <p class="news__card-date">12/06/2021</p>
+                      <h4 class="news__card-title"><%= news[i].name%></h4>
+                    </figcaption>
+                  </figure>
+    
+                  <figcaption class="news__card-caption-mobile">
+                    <p class="news__card-date"><%= moment(news[i].createdAt).format("DD.MM.YYYY") %>1</p>
+                    <h4 class="news__card-title"><%= news[i].name%></h4>
+                  </figcaption>
+                  <p class="news__card-description">
+                    <%= news[i].title%>
+                  </p>
+                </a>
+            <% }%>
+            <% }%>
+          </div>
+        </section>
+
+        <section id="courses" class="courses">
+          <div class="__header">
+            <h2 class="section-title">Kurslar</h2>
+            <button type="button" class="more-btn">Barcha kurslar</button>
+          </div>
+
+          <div class="__content course__content">
+            
+            <%if( course) {%>
+              <%for (let i=0; i<course.length; i++) {%>
+                  <%if(i===3){break;}%>
+            <div class="course">
+              <img class="course__img" src="<%= course[i].image%>" alt="" />
+              <div class="course__info">
+                <h3 class="course__subject"><%= course[i].name%></h3>
+                <div class="author">
+                  <img
+                  style="width: 36px; border-radius: 50%;"
+                    class="author__img"
+                    src="<%= course[i].teacher.image%>"
+                    alt="author-img"
+                  />
+                  <span class="author__name"><%= course[i].teacher.name%></span>
+                </div>
+                <p class="course__description">
+                  <%= course[i].title%>
+                </p>
+                <h5 class="course__price">280 000 so‘m</h5>
+                <button class="btn course__buy">Sotib olish</button>
+              </div>
+            </div>
+            <% }%>
+            <% }%>
+         
+            <%if( news.length>3) {%>
+              <%for (let i=3; i<course.length; i++) {%>
+                <div class="course extra hide">
+                  <img class="course__img" src="<%= course[i].image%>" alt="" />
+                  <div class="course__info">
+                    <h3 class="course__subject"><%= course[i].name%></h3>
+                    <div class="author">
+                      <img
+                      style="width: 36px; border-radius: 50%;"
+                        class="author__img"
+                        src="<%= course[i].teacher.image%>"
+                        alt="author-img"
+                      />
+                      <span class="author__name"><%= course[i].teacher.name%></span>
+                    </div>
+                    <p class="course__description">
+                      <%= course[i].title%>
+                    </p>
+                    <h5 class="course__price">280 000 so‘m</h5>
+                    <button class="btn course__buy">Sotib olish</button>
+                  </div>
+                </div>
+            <% }%>
+            <% }%>
+          
+          </div>
+        </section>
+
+        <div class="modal">
+          <img class="modal-close" src="./img/close-modal.svg" alt="" />
+          <form action="/api/create/student" method="POST">
+            <label class="label" for="name"
+              >Ism va Familiyangizni kiriting: F.I.O.</label
+            >
+            <input class="input" type="text" name="name" placeholder="F.I.O" required />
+            <label class="label" for="name"
+              >Telefon nomeringizni kiriting</label
+            >
+            <input
+              class="input"
+              type="text"
+              placeholder="+998 "
+              maxlength="13"
+              required
+              name="phone"
+            />
+            <button class="btn input__buy" type="submit" value="Sotib olish" > Sotib olish</button>
+          </form>
+        </div>
+
+        <section id="teachers" class="teachers carousel">
+          <div class="__header">
+            <h2 class="section-title">Ustozlar</h2>
+          </div>
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              <% for(item of teacher) {%>
+              <div class="swiper-slide carousel__item">
+                <img
+                  class="carousel__item-img"
+                  src="<%= item.image%>"
+                  alt="teacher"
+                />
+                <div class="carousel__item-text">
+                  <h3 class="carousel__item-name"><%= item.name%></h3>
+                  <p class="carousel__item-specialist">
+                    <%= item.job%>
+                  </p>
+                  <p class="carousel__item-info">
+                   <%= item.description%>
+                  </p>
+                </div>
+              </div>
+              <% }%>
+            </div>
+            <div class="swiper-pagination pagination"></div>
+          </div>
+        </section>
+
+        <section id="comments" class="comments carousel">
+          <div class="__header">
+            <h2 class="section-title">Izohlar</h2>
+          </div>
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              <% for(item of comment) {%>
+              <div class="swiper-slide carousel__item">
+                <img
+                  class="carousel__item-img"
+                  src="<%= item.image%>"
+                  alt="student"
+                />
+                <div class="carousel__item-text">
+                  <h3 class="carousel__item-name"><%= item.name%></h3>
+                  <p class="carousel__item-specialist">
+                    <%= item.job%>
+                  </p>
+                  <p class="carousel__item-info">
+                    <%= item.description%>
+                  </p>
+                </div>
+              </div>
+              <% }%>
+            </div>
+            <div class="swiper-pagination pagination"></div>
+          </div>
+        </section>
+
+        <section id="gallery" class="gallery">
+          <div class="__header">
+            <h2 class="section-title">Darslardan lavhalar</h2>
+          </div>
+
+          <div class="swiper mySwiperGallery">
+            <div class="swiper-wrapper">
+              <%if( gallery) {%>
+              <div class="swiper-slide gallery__item">    
+              <%for (let i=0; i<gallery.length; i++) {%>
+                  <%if(i===6){break;}%>
+                <a href="<%= gallery[i].image%>">
+                  <img class="gallery__img" src="<%= gallery[i].image%>" alt="" />
+                  <div class="overlay">
+                    <img src="./img/zoom.svg" alt="zoom-icon" />
+                  </div>
+                </a>
+                <% }%>
+              </div>
+              <% }%>
+              
+            <%if( gallery.length>6) {%>
+              <div class="swiper-slide gallery__item">
+              <%for (let i=6; i<gallery.length; i++) {%>
+                <%if(i===12){break;}%>
+                <a href="<%= gallery[i].image%>">
+                  <img class="gallery__img" src="<%= gallery[i].image%>" alt="" />
+                  <div class="overlay">
+                    <img src="./img/zoom.svg" alt="zoom-icon" />
+                  </div>
+                </a>
+                <% }%>
+              </div>
+              <% }%>
+              
+              <%if( gallery.length>12) {%>
+              <div class="swiper-slide gallery__item">
+                  <%for (let i=12; i<gallery.length; i++) {%>
+                    <%if(i===18){break;}%>
+                    <a href="<%= gallery[i].image%>">
+                      <img class="gallery__img" src="<%= gallery[i].image%>" alt="" />
+                      <div class="overlay">
+                        <img src="./img/zoom.svg" alt="zoom-icon" />
+                      </div>
+                    </a>
+                    <% }%>
+                  </div>
+                  <% }%>
+                  
+                <%if( gallery.length>12) {%>
+              <div class="swiper-slide gallery__item">
+                  <%for (let i=12; i<gallery.length; i++) {%>
+                    <%if(i===18){break;}%>
+                    <a href="<%= gallery[i].image%>">
+                      <img class="gallery__img" src="<%= gallery[i].image%>" alt="" />
+                      <div class="overlay">
+                        <img src="./img/zoom.svg" alt="zoom-icon" />
+                      </div>
+                    </a>
+                    <% }%>
+                  </div>
+                  <% }%>
+                  
+                <%if( gallery.length>18) {%>
+              <div class="swiper-slide gallery__item">
+                  <%for (let i=18; i<gallery.length; i++) {%>
+                    <%if(i===24){break;}%>
+                    <a href="<%= gallery[i].image%>">
+                      <img class="gallery__img" src="<%= gallery[i].image%>" alt="" />
+                      <div class="overlay">
+                        <img src="./img/zoom.svg" alt="zoom-icon" />
+                      </div>
+                    </a>
+                    <% }%>
+                  </div>
+                  <% }%>
+
+            </div>
+            <div class="swiper-pagination pagination"></div>
+          </div>
+        </section>
+      </div>
+      
+      <section id="contact" class="contact">
+        <div class="contact-wrapper">
+          <div class="__header">
+            <h2 class="section-title">Aloqa</h2>
+          </div>
+          <form action="/api/create/contact" method="POST">
+            <div class="contact__inputs">
+              <div class="contact__input contact__name">
+                <label for="name" class="input__title"
+                  >Ism va Familiyangizni kiriting: F.I.O.</label
+                >
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="Bu yerga yozing"
+                  name="name"
+                  required
+                />
+              </div>
+              <div class="contact__input contact__email">
+                <label for="number" class="input__title"
+                  >Telefon nomer kiriting</label
+                >
+                <input
+                  class="input"
+                  type="text"
+                  onkeypress="return onlyNumberKey(event)"
+                  maxlength="13"
+                  value="+998"
+                  name="phone"
+                  required
+                />
+                <button
+                  class="btn input-submit"
+                  type="submit"
+                  value="Yuborish"
+                >Yuborish</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section id="location" class="location">
+        <%if(about) {%>
+        <div class="location-wrapper">
+          <div class="location__info">
+            <h2 class="section-title">Biz bilan bog'lanish</h2>
+            <div class="info" style="display: flex">
+              <img src="./img/location.svg" alt="" />
+              <span class="contact-ways">
+                <%= about[0].location%>
+                </span
+              >
+            </div>
+            <div class="info">
+              <img src="./img/telephone.svg" alt="" />
+              <span class="contact-ways"><%= about[0].phone%></span>
+            </div>
+            <div class="info">
+              <img src="./img/email.svg" alt="" />
+              <span class="contact-ways"><%= about[0].email%></span>
+            </div>
+
+            <h6 class="social-media">Bizning ijtimoiy tarmoqlar</h6>
+            <a class="social-media-type" href="<%= about[0].tg%>">
+              <img src="./img/telegram.svg" alt="" />
+            </a>
+            <a class="social-media-type" href="<%= about[0].fb%>">
+              <img src="./img/facebook.svg" alt="" />
+            </a>
+            <a class="social-media-type" href="<%= about[0].insta%>">
+              <img src="./img/instagram.svg" alt="" />
+            </a>
+          </div>
+          <iframe
+            src="<%= about[0].map%>"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+          ></iframe>
+        </div>
+        <% }%>
+      </section>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer__logo">
+        <img src="./img/Logo.svg" alt="" />
+        <p style="width: 60%;">
+          
+          <%- header[0].description%>
+        </p>
+      </div>
+      <div class="footer__links">
+        <div>
+          <a class="footer__link" href="#news">Yangiliklar</a>
+          <a class="footer__link" href="#courses">Kurslar</a>
+          <a class="footer__link" href="#teachers">Ustozlar</a>
+        </div>
+
+        <div>
+          <a class="footer__link" href="#comments">Izohlar</a>
+          <a class="footer__link" href="#gallery">Darslardan lavhalar</a>
+          <a class="footer__link" href="#contact">Aloqa</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./js/app.js"></script>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script src="./js/carousel.js"></script>
+
+    <!-- Light gallery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js"></script>
+
+    <!-- Initialize light gallery -->
+    <script>
+      let galleryItems = document.querySelectorAll(".gallery__item");
+      galleryItems.forEach((item) => {
+        lightGallery(item);
+      });
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Add smooth scrolling to all links
+        $("a").on("click", function (event) {
+          // Make sure this.hash has a value before overriding default behavior
+          if (this.hash !== "") {
+            // Prevent default anchor click behavior
+            event.preventDefault();
+
+            // Store hash
+            var hash = this.hash;
+
+            // Using jQuery's animate() method to add smooth page scroll
+            // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+            $("html, body").animate(
+              {
+                scrollTop: $(hash).offset().top,
+              },
+              800,
+              function () {
+                // Add hash (#) to URL when done scrolling (default click behavior)
+                window.location.hash = hash;
+              }
+            );
+          } // End if
+        });
+      });
+    </script>
+  </body>
+</html>

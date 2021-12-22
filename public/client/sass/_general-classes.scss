@@ -1,0 +1,16 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: linear-gradient(105deg, #F7F4F9, #F1E6F7, #ECD8FA, #E8F4DD);
+  background-size: contain;
+  background-repeat: no-repeat;
+  overflow-x: hidden;
+}
+
+

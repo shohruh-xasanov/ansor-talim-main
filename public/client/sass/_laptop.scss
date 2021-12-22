@@ -1,0 +1,72 @@
+@media (min-width: 1001px) and (max-width: 1200px) {
+  html {
+    font-size: 50%;
+  }
+
+  .header {
+    padding: 2rem 1rem;
+    &-wrapper {
+      max-width: 900px;
+
+      .navbar {
+        .ansor-logo {
+          width: 140px;
+        }
+
+        &__link {
+          font-size: 17px;
+          margin-left: 2rem;
+        }
+      }
+    }
+
+    .main {
+      &__content {
+        width: 70%;
+      }
+
+      &__description {
+        letter-spacing: 0.0625rem;
+      }
+
+      .hero {
+        width: 30%;
+        background-size: 80%;
+        padding: 32rem;
+      }
+    }
+  }
+
+  .wrapper {
+    max-width: 1000px;
+    padding: 0 4rem;
+
+    .__content {
+      grid-gap: 2rem;
+    }
+  }
+
+  .modal {
+    width: 55vw;
+  }
+
+  .contact {
+    &-wrapper {
+      padding: 0 4rem;
+    }
+  }
+
+  .location {
+    &-wrapper {
+      padding: 0 0 0 6rem;
+    }
+
+    iframe {
+      transform: translateX(0);
+    }
+  }
+
+  .footer {
+    padding: 5rem 6rem;
+  }
+}
