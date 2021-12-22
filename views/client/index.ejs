@@ -401,7 +401,7 @@
       </section>
 
       <section id="location" class="location">
-        <%if(about) {%>
+        <%if(about[0]) {%>
         <div class="location-wrapper">
           <div class="location__info">
             <h2 class="section-title">Biz bilan bog'lanish</h2>
@@ -447,8 +447,9 @@
       <div class="footer__logo">
         <img src="./img/Logo.svg" alt="" />
         <p style="width: 60%;">
-          
+          <%if(header[0]) {%>
           <%- header[0].description%>
+          <% }%>
         </p>
       </div>
       <div class="footer__links">

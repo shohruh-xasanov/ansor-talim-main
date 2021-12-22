@@ -17,29 +17,29 @@ module.exports = function (app) {
     app.use('/api',roles, require('./header_router'))
     app.use('/api',roles, require('./gallery_router'))
 
-    app.use((req,res,next)=>{
-        res.status(404)
-        res.render('client/err',{
-            layout:false
-        })
-        next()
-    })
+    // app.use((req,res,next)=>{
+    //     res.status(404)
+    //     res.render('client/err',{
+    //         layout:false
+    //     })
+    //     next()
+    // })
 
-    app.use(errorHandler)
-    app.use(function (err, req,res,next){
-        if(err){
-            res.render('client/err',{
-                layout:false
-                })
-        }
-        next()
-    })
+    // app.use(errorHandler)
+    // app.use(function (err, req,res,next){
+    //     if(err){
+    //         res.render('client/err',{
+    //             layout:false
+    //             })
+    //     }
+    //     next()
+    // })
     
-    process.on('uncaughtException', ex=>{
-        process.exit(1);
-    })
+    // process.on('uncaughtException', ex=>{
+    //     process.exit(1);
+    // })
 
-    process.on('unhandledRejection', ex=>{
-        process.exit(1);
-    })
+    // process.on('unhandledRejection', ex=>{
+    //     process.exit(1);
+    // })
 }
